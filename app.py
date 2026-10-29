@@ -653,34 +653,34 @@ def main():
                             
                             # Row 1: Images
                             axes[0, 0].imshow(analyzer.original_image)
-                            axes[0, 0].set_title('📷 Original')
+                            axes[0, 0].set_title(' Original')
                             axes[0, 0].axis('off')
                             
                             axes[0, 1].imshow(analyzer.background_removed)
-                            axes[0, 1].set_title('🗑️ BG Removed')
+                            axes[0, 1].set_title(' BG Removed')
                             axes[0, 1].axis('off')
                             
                             axes[0, 2].imshow(analyzer.cropped_image)
-                            axes[0, 2].set_title('✂️ Cropped Nail')
+                            axes[0, 2].set_title(' Cropped Nail')
                             axes[0, 2].axis('off')
                             
                             # Row 2: Heat maps
                             hsv = cv2.cvtColor(analyzer.cropped_image, cv2.COLOR_RGB2HSV)
                             
                             im1 = axes[1, 0].imshow(hsv[:, :, 1], cmap='hot')
-                            axes[1, 0].set_title('🌡️ Saturation Map')
+                            axes[1, 0].set_title(' Saturation Map')
                             axes[1, 0].axis('off')
                             plt.colorbar(im1, ax=axes[1, 0], fraction=0.046)
                             
                             brightness = cv2.cvtColor(analyzer.cropped_image, cv2.COLOR_RGB2GRAY)
                             im2 = axes[1, 1].imshow(brightness, cmap='viridis')
-                            axes[1, 1].set_title('💡 Brightness Map')
+                            axes[1, 1].set_title(' Brightness Map')
                             axes[1, 1].axis('off')
                             plt.colorbar(im2, ax=axes[1, 1], fraction=0.046)
                             
                             pink_map = analyzer.cropped_image[:,:,0] - (analyzer.cropped_image[:,:,1] + analyzer.cropped_image[:,:,2])/2
                             im3 = axes[1, 2].imshow(pink_map, cmap='RdPu')
-                            axes[1, 2].set_title('🎨 Pinkness Map')
+                            axes[1, 2].set_title(' Pinkness Map')
                             axes[1, 2].axis('off')
                             plt.colorbar(im3, ax=axes[1, 2], fraction=0.046)
                             
@@ -689,7 +689,7 @@ def main():
                             rgb_values = [hb['avg_colors']['R'], hb['avg_colors']['G'], hb['avg_colors']['B']]
                             colors = ['#ff6b6b', '#51cf66', '#339af0']
                             bars = axes[2, 0].bar(['Red', 'Green', 'Blue'], rgb_values, color=colors, alpha=0.8)
-                            axes[2, 0].set_title('🎨 RGB Distribution')
+                            axes[2, 0].set_title(' RGB Distribution')
                             axes[2, 0].set_ylabel('Intensity')
                             
                             for bar, value in zip(bars, rgb_values):
@@ -715,7 +715,7 @@ def main():
                             scores_values = [hb['score'], results['oxygen']['spo2'], results['iron']['iron_score']]
                             score_colors = ['#3b82f6', '#10b981', '#f59e0b']
                             bars2 = axes[2, 2].bar(scores_names, scores_values, color=score_colors)
-                            axes[2, 2].set_title('📊 Overall Scores')
+                            axes[2, 2].set_title(' Overall Scores')
                             axes[2, 2].set_ylim(0, 100)
                             axes[2, 2].set_ylabel('Score (%)')
                             
@@ -733,7 +733,7 @@ def main():
                             col1, col2, col3 = st.columns(3)
                             
                             with col1:
-                                st.markdown("**🧬 Hemoglobin Details**")
+                                st.markdown("** Hemoglobin Details**")
                                 st.write(f"• Red: {hb['avg_colors']['R']:.1f}")
                                 st.write(f"• Green: {hb['avg_colors']['G']:.1f}")
                                 st.write(f"• Blue: {hb['avg_colors']['B']:.1f}")
@@ -742,7 +742,7 @@ def main():
                                 st.write(f"• Brightness: {hb['brightness']:.1f}%")
                             
                             with col2:
-                                st.markdown("**💨 Oxygen Details**")
+                                st.markdown("** Oxygen Details**")
                                 ox = results['oxygen']
                                 st.write(f"• SpO2: {ox['spo2']:.1f}%")
                                 st.write(f"• R/B Ratio: {ox['rb_ratio']:.2f}")
@@ -750,7 +750,7 @@ def main():
                                 st.write(f"• Has Cyanosis: {'Yes' if ox['has_cyanosis'] else 'No'}")
                             
                             with col3:
-                                st.markdown("**⚙️ Iron Details**")
+                                st.markdown("** Iron Details**")
                                 iron = results['iron']
                                 st.write(f"• Lunula: {iron['lunula']['percentage']:.1f}%")
                                 st.write(f"• Paleness: {iron['paleness']['brightness']:.1f}%")
@@ -762,7 +762,7 @@ def main():
         st.info("👆 **Upload an image to start**")
         
         st.markdown("---")
-        st.markdown("### 📸 Tips for Best Results:")
+        st.markdown("###  Tips for Best Results:")
         
         col1, col2, col3 = st.columns(3)
         
